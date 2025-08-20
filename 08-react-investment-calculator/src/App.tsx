@@ -131,7 +131,7 @@ function App() {
           </tbody>
         </table>
       ) : (
-        <p>No investment calculating yet.</p>
+        <p style={{textAlign : 'center'}}>No investment calculating yet.</p>
       )}
     </div>
   );
