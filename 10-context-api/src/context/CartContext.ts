@@ -1,61 +1,57 @@
-import React, { createContext, useContext, useReducer, ReactNode } from "react";
+import React, { createContext, useReducer, useContext, type ReactNode } from "react";
 
-type Item = {
+type Product = {
   id: number;
   name: string;
   price: number;
 };
 
 type CartState = {
-  items: Item[];
+  cart: Product[];
 };
 
-type CartAction =
-  | { type: "ADD"; payload: Item }
-  | { type: "REMOVE"; payload: number };
+type Action =
+  | { type: "ADD_TO_CART"; payload: Product }
+  | { type: "REMOVE_FROM_CART"; payload: number };
 
 const initialState: CartState = {
-  items: [],
+  cart: [],
 };
 
-function cartReducer(state: CartState, action: CartAction): CartState {
+function cartReducer(state: CartState, action: Action): CartState {
   switch (action.type) {
-    case "ADD":
-      return { ...state, items: [...state.items, action.payload] };
-    case "REMOVE":
+    case "ADD_TO_CART":
+      return { ...state, cart: [...state.cart, action.payload] };
+    case "REMOVE_FROM_CART":
       return {
         ...state,
-        items: state.items.filter((item) => item.id !== action.payload),
+        cart: state.cart.filter((item) => item.id !== action.payload),
       };
     default:
       return state;
   }
 }
 
-type CartContextType = {
+const CartContext = createContext<{
   state: CartState;
-  addToCart: (item: Item) => void;
-  removeFromCart: (id: number) => void;
+  dispatch: React.Dispatch<Action>;
+}>({
+  state: initialState,
+  dispatch: () => null,
+});
+
+type CartProviderProps = {
+  children: React.ReactNode;
 };
 
-const CartContext = createContext<CartContextType | undefined>(undefined);
-
-export const CartProvider = ({ children }: { children: ReactNode }) => {
+export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
-  const addToCart = (item: Item) => dispatch({ type: "ADD", payload: item });
-  const removeFromCart = (id: number) =>
-    dispatch({ type: "REMOVE", payload: id });
-
   return (
-    <CartContext.Provider value={{ state, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ state, dispatch }}>
       {children}
     </CartContext.Provider>
   );
 };
 
-export const useCart = () => {
-  const context = useContext(CartContext);
-  if (!context) throw new Error("useCart must be used inside CartProvider");
-  return context;
-};
+export const useCart = () => useContext(CartContext);
