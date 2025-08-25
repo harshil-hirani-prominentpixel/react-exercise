@@ -3,7 +3,8 @@ import Card from "../UI/Card";
 import MealItem from "./MealItem/MealItem";
 import classes from "./AvailableMeals.module.css";
 
-type Meal = {
+// Type for a meal
+export type Meal = {
   id: string;
   name: string;
   description: string;
@@ -20,7 +21,7 @@ const DUMMY_MEALS: Meal[] = [
   {
     id: "m2",
     name: "Schnitzel",
-    description: "A german specialty!",
+    description: "A German specialty!",
     price: 16.5,
   },
   {

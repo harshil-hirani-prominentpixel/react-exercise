@@ -1,42 +1,60 @@
-import React from "react";
-import classes from "./Cart.module.css";
+import React, { useContext } from "react";
 
-type CartItem = {
-  id: string;
-  name: string;
-  amount: number;
-  price: number;
-};
+import Modal from "../UI/Modal";
+import CartItem from "../Cart/CartItem"; 
+import classes from "./Cart.module.css";
+import CartContext from "../../store/cart-context";
+import type { CartContextType } from "../../store/cart-context";
+import type { CartItem as CartItemType } from "../../store/cart-context";
+
 
 type CartProps = {
-
+  onClose: () => void;
 };
 
-const Cart: React.FC<CartProps> = (props) => {
-  const cartData: CartItem[] = [
-    { id: "c1", name: "Harshil", amount: 2, price: 13.15 },
-  ];
+const Cart: React.FC<CartProps> = ({ onClose }) => {
+  const cartCtx = useContext<CartContextType>(CartContext);
+
+  const totalAmount = `₹${cartCtx.totalAmount.toFixed(2)}`;
+  const hasItems = cartCtx.items.length > 0;
+
+  const cartItemRemoveHandler = (id: string) => {
+    cartCtx.removeItem(id);
+  };
+
+  const cartItemAddHandler = (item: CartItemType) => {
+    cartCtx.addItem(item);
+  };
 
   const cartItems = (
     <ul className={classes["cart-items"]}>
-      {cartData.map((item) => (
-        <li key={item.id}>{item.name}</li>
+      {cartCtx.items.map((item) => (
+        <CartItem
+          key={item.id}
+          name={item.name}
+          amount={item.amount}
+          price={item.price}
+          onRemove={() => cartItemRemoveHandler(item.id)}
+          onAdd={() => cartItemAddHandler(item)}
+        />
       ))}
     </ul>
   );
 
   return (
-    <div>
+    <Modal >
       {cartItems}
       <div className={classes.total}>
         <span>Total Amount</span>
-        <span>35.62</span>
+        <span>{totalAmount}</span>
       </div>
       <div className={classes.actions}>
-        <button className={classes["button--alt"]}>Close</button>
-        <button className={classes.button}>Order</button>
+        <button className={classes["button--alt"]} onClick={onClose}>
+          Close
+        </button>
+        {hasItems && <button className={classes.button}>Order</button>}
       </div>
-    </div>
+    </Modal>
   );
 };
 

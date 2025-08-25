@@ -7,7 +7,7 @@ export type CartItem = {
   price: number;
 };
 
-type CartContextType = {
+export type CartContextType = {
   items: CartItem[];
   totalAmount: number;
   addItem: (item: CartItem) => void;
