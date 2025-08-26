@@ -1,9 +1,20 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import MoviesList from "./components/MoviesList";
 import AddMovie from "./components/AddMovie";
 import "./App.css";
 
 import type { MovieType, NewMovieType } from "./types";
+
+interface SwapiFilm {
+  episode_id: number;
+  title: string;
+  opening_crawl: string;
+  release_date: string;
+}
+
+interface SwapiResponse {
+  results: SwapiFilm[];
+}
 
 function App() {
   const [movies, setMovies] = useState<MovieType[]>([]);
@@ -14,26 +25,28 @@ function App() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch("https://swapi.dev/api/films/");
+      const response = await fetch("https://swapi.py4e.com/api/films/");
       if (!response.ok) {
         throw new Error("Something went wrong!");
       }
 
-      const data = await response.json();
+      const data: SwapiResponse = await response.json();
 
-      const transformedMovies: MovieType[] = data.results.map(
-        (movieData: any) => {
-          return {
-            id: movieData.episode_id.toString(),
-            title: movieData.title,
-            openingText: movieData.opening_crawl,
-            releaseDate: movieData.release_date,
-          };
-        }
-      );
+      const transformedMovies: MovieType[] = data.results.map((movieData) => {
+        return {
+          id: movieData.episode_id.toString(),
+          title: movieData.title,
+          openingText: movieData.opening_crawl,
+          releaseDate: movieData.release_date,
+        };
+      });
       setMovies(transformedMovies);
-    } catch (error: any) {
-      setError(error.message);
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred");
+      }
     }
     setIsLoading(false);
   }, []);
