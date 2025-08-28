@@ -1,0 +1,46 @@
+{
+  "meals": {
+    "m1": {
+      "description": "Finest fish and veggies",
+      "name": "Sushi",
+      "price": 22.99
+    },
+    "m2": {
+      "description": "A german specialty!",
+      "name": "Schnitzel",
+      "price": 16.5
+    },
+    "m3": {
+      "description": "American, raw, meaty",
+      "name": "Barbecue Burger",
+      "price": 12.99
+    },
+    "m4": {
+      "description": "Healthy...and green...",
+      "name": "Green Bowl",
+      "price": 18.99
+    }
+  },
+  "orders": {
+    "order1": {
+      "name": "John Doe",
+      "items": {
+        "m1": { "qty": 2, "price": 22.99 },
+        "m3": { "qty": 1, "price": 12.99 }
+      },
+      "numOfItems": 3,
+      "totalPrice": 58.97
+    },
+    "order2": {
+      "name": "Jane Smith",
+      "items": {
+        "m2": { "qty": 1, "price": 16.5 },
+        "m4": { "qty": 2, "price": 18.99 }
+      },
+      "numOfItems": 3,
+      "totalPrice": 54.48
+    }
+  }
+}
+ 
+ 
