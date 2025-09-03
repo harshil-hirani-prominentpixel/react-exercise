@@ -1,0 +1,47 @@
+.container.content {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.blog-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-3px);
+}
+
+.blog-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+.blog-meta {
+  margin-bottom: 0.5rem;
+}
+
+.blog-meta h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #333;
+}
+
+.blog-meta small {
+  color: #777;
+  font-size: 0.85rem;
+}
+
+.blog-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+}

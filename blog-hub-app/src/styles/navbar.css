@@ -1,0 +1,113 @@
+/* Header */
+.site-header {
+  background: #1f1f1f;
+  padding: 1rem 2rem;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Brand */
+.brand-link {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffcc00;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.brand-link:hover {
+  color: #fff;
+}
+
+/* Nav links */
+.main-nav {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.nav-link {
+  color: #f5f5f5;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: all 0.25s ease-in-out;
+}
+
+.nav-link:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.nav-link.active {
+  background: #ffcc00;
+  color: #000;
+  font-weight: 600;
+}
+
+/* Right side */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.greeting {
+  font-size: 0.95rem;
+  color: #ddd;
+}
+
+/* Profile dropdown */
+.profile-dropdown {
+  position: relative;
+}
+
+.profile-dropdown button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.profile-dropdown ul {
+  position: absolute;
+  top: 2.5rem;
+  right: 0;
+  background: #2a2a2a;
+  border-radius: 8px;
+  padding: 0.6rem 0;
+  min-width: 160px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  display: none;
+}
+
+.profile-dropdown:hover ul {
+  display: block;
+}
+
+.profile-dropdown li {
+  list-style: none;
+}
+
+.profile-dropdown li a {
+  display: block;
+  padding: 0.6rem 1rem;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.profile-dropdown li a:hover {
+  background: #ffcc00;
+  color: #000;
+}
