@@ -1,6 +1,4 @@
-import type { JSX } from "react";
-
-const About = (): JSX.Element => {
+const About = (): React.JSX.Element => {
   return (
     <div className='container content'>
       <h2>About MyBlog</h2>

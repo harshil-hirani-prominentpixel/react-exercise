@@ -111,3 +111,7 @@
   background: #ffcc00;
   color: #000;
 }
+
+/* styles/navbar.css */
+.site-header .navbar-toggler { border: none; }
+.site-header .navbar-toggler:focus { box-shadow: none; }

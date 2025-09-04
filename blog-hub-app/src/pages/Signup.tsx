@@ -1,4 +1,4 @@
-import { useState, type JSX } from "react";
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import type { User } from "../types";
 import { registerUser } from "../utils/auth";
@@ -8,7 +8,7 @@ import {
   validateConfirmPassword,
 } from "../utils/validator";
 
-export default function Signup(): JSX.Element {
+export default function Signup(): React.JSX.Element {
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -67,99 +67,131 @@ export default function Signup(): JSX.Element {
 
   return (
     <div className='auth-container'>
-      <form className='auth-card' onSubmit={handleSubmit} noValidate>
-        <h2>Sign Up</h2>
-        <p className='subtitle'>
-          Create an account to get started with MyBlog.
-        </p>
+      <form
+        className='card auth-card shadow-sm'
+        onSubmit={handleSubmit}
+        noValidate
+      >
+        <div className='card-body'>
+          <h2 className='mb-1'>Sign Up</h2>
+          <p className='text-muted mb-4'>
+            Create an account to get started with MyBlog.
+          </p>
 
-        <div className='grid-2'>
-          <div className='form-group'>
-            <label>First Name</label>
-            <input
-              name='firstName'
-              value={form.firstName}
-              onChange={handleChange}
-              placeholder='Enter First Name'
-            />
-            {errors.firstName && (
-              <small className='err'>{errors.firstName}</small>
-            )}
+          <div className='row g-3'>
+            <div className='col-md-6'>
+              <label className='form-label'>First Name</label>
+              <input
+                name='firstName'
+                value={form.firstName}
+                onChange={handleChange}
+                className={`form-control ${
+                  errors.firstName ? "is-invalid" : ""
+                }`}
+                placeholder='Enter First Name'
+              />
+              {errors.firstName && (
+                <div className='invalid-feedback d-block'>
+                  {errors.firstName}
+                </div>
+              )}
+            </div>
+
+            <div className='col-md-6'>
+              <label className='form-label'>Last Name</label>
+              <input
+                name='lastName'
+                value={form.lastName}
+                onChange={handleChange}
+                className={`form-control ${
+                  errors.lastName ? "is-invalid" : ""
+                }`}
+                placeholder='Enter Last Name'
+              />
+              {errors.lastName && (
+                <div className='invalid-feedback d-block'>
+                  {errors.lastName}
+                </div>
+              )}
+            </div>
+
+            <div className='col-12'>
+              <label className='form-label'>Email</label>
+              <input
+                name='email'
+                value={form.email}
+                onChange={handleChange}
+                className={`form-control ${errors.email ? "is-invalid" : ""}`}
+                placeholder='Enter Email'
+              />
+              {errors.email && (
+                <div className='invalid-feedback d-block'>{errors.email}</div>
+              )}
+            </div>
+
+            <div className='col-12'>
+              <label className='form-label'>Username</label>
+              <input
+                name='username'
+                value={form.username}
+                onChange={handleChange}
+                className={`form-control ${
+                  errors.username ? "is-invalid" : ""
+                }`}
+                placeholder='Enter Username'
+              />
+              {errors.username && (
+                <div className='invalid-feedback d-block'>
+                  {errors.username}
+                </div>
+              )}
+            </div>
+
+            <div className='col-md-6'>
+              <label className='form-label'>Password</label>
+              <input
+                type='password'
+                name='password'
+                value={form.password}
+                onChange={handleChange}
+                className={`form-control ${
+                  errors.password ? "is-invalid" : ""
+                }`}
+                placeholder='Enter Password'
+              />
+              {errors.password && (
+                <div className='invalid-feedback d-block'>
+                  {errors.password}
+                </div>
+              )}
+            </div>
+
+            <div className='col-md-6'>
+              <label className='form-label'>Confirm Password</label>
+              <input
+                type='password'
+                name='confirm'
+                value={form.confirm}
+                onChange={handleChange}
+                className={`form-control ${errors.confirm ? "is-invalid" : ""}`}
+                placeholder='Enter Confirm Password'
+              />
+              {errors.confirm && (
+                <div className='invalid-feedback d-block'>{errors.confirm}</div>
+              )}
+            </div>
           </div>
 
-          <div className='form-group'>
-            <label>Last Name</label>
-            <input
-              name='lastName'
-              value={form.lastName}
-              onChange={handleChange}
-              placeholder='Enter Last Name'
-            />
-            {errors.lastName && (
-              <small className='err'>{errors.lastName}</small>
-            )}
-          </div>
+          {errors.general && <p className='err mt-2'>{errors.general}</p>}
+
+          <button className='btn btn-primary w-100 mt-3' type='submit'>
+            Sign Up
+          </button>
+
+          <p className='text-center mt-3 mb-0'>
+            Already have an account? <Link to='/login'>Login</Link>
+          </p>
         </div>
-
-        <div className='form-group'>
-          <label>Email</label>
-          <input
-            name='email'
-            value={form.email}
-            onChange={handleChange}
-            placeholder='Enter Email'
-          />
-          {errors.email && <small className='err'>{errors.email}</small>}
-        </div>
-
-        <div className='form-group'>
-          <label>Username</label>
-          <input
-            name='username'
-            value={form.username}
-            onChange={handleChange}
-            placeholder='Enter Username'
-          />
-          {errors.username && <small className='err'>{errors.username}</small>}
-        </div>
-
-        <div className='grid-2'>
-          <div className='form-group'>
-            <label>Password</label>
-            <input
-              type='password'
-              name='password'
-              value={form.password}
-              onChange={handleChange}
-              placeholder='Enter Password'
-            />
-            {errors.password && (
-              <small className='err'>{errors.password}</small>
-            )}
-          </div>
-
-          <div className='form-group'>
-            <label>Confirm Password</label>
-            <input
-              type='password'
-              name='confirm'
-              value={form.confirm}
-              onChange={handleChange}
-              placeholder='Enter Confirm Password'
-            />
-            {errors.confirm && <small className='err'>{errors.confirm}</small>}
-          </div>
-        </div>
-
-        {errors.general && <p className='err'>{errors.general}</p>}
-
-        <button className='btn-cta' type='submit'>
-          Sign Up
-        </button>
-
-        <p className='switch-auth'>
-          Already have an account? <Link to='/login'>Login</Link>
-        </p>
       </form>
     </div>
   );

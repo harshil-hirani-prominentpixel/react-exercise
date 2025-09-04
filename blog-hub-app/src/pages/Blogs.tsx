@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 import type { Blog } from "../types";
 import { readLocal } from "../utils/storage";
 import "../styles/blogs.css"; 
-import type { JSX } from "react";
 
-
-const Blogs = (): JSX.Element => {
+const Blogs = (): React.JSX.Element => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
 
   useEffect(() => {

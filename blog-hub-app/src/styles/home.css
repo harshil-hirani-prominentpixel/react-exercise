@@ -1,0 +1,5 @@
+/* styles/home.css */
+.home-hero { background: linear-gradient(180deg,#fff, #f1f5f9); border-bottom: 1px solid #e5e7eb; }
+.hero-inner { padding: 3rem 0; }
+.hero-divider { margin: 2rem 0; }
+.accent { color: #0d6efd; }

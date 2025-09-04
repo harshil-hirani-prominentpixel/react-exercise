@@ -1,29 +1,87 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import ProfileDropdown from "./ProfileDropDown";
+import { getCurrentUser } from "../utils/auth";
+import "../styles/navbar.css";
 
 export default function Header() {
-  const user = JSON.parse(localStorage.getItem("currentUser") || "null");
+  const user = getCurrentUser();
 
   return (
-    <header>
-      <h2>Blog Hub</h2>
-      <nav>
-        <NavLink to='/'>Home</NavLink>
-        <NavLink to='/blogs'>Blogs</NavLink>
-        <NavLink to='/about'>About Us</NavLink>
-        {!user && <NavLink to='/login'>Login</NavLink>}
-        {!user && <NavLink to='/signup'>Sign Up</NavLink>}
+    <header className='site-header sticky-top bg-white border-bottom'>
+      <nav className='navbar navbar-expand-lg container'>
+        <Link className='navbar-brand fw-bold text-primary' to='/'>
+          Blog Hub
+        </Link>
+
+        <button
+          className='navbar-toggler'
+          type='button'
+          data-bs-toggle='collapse'
+          data-bs-target='#mainNav'
+          aria-controls='mainNav'
+          aria-expanded='false'
+          aria-label='Toggle navigation'
+        >
+          <span className='navbar-toggler-icon' />
+        </button>
+
+        <div className='collapse navbar-collapse' id='mainNav'>
+          <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
+            <li className='nav-item'>
+              <NavLink
+                to='/'
+                end
+                className={({ isActive }) =>
+                  `nav-link ${isActive ? "active" : ""}`
+                }
+              >
+                Home
+              </NavLink>
+            </li>
+            <li className='nav-item'>
+              <NavLink
+                to='/blogs'
+                className={({ isActive }) =>
+                  `nav-link ${isActive ? "active" : ""}`
+                }
+              >
+                Blogs
+              </NavLink>
+            </li>
+            <li className='nav-item'>
+              <NavLink
+                to='/about'
+                className={({ isActive }) =>
+                  `nav-link ${isActive ? "active" : ""}`
+                }
+              >
+                About Us
+              </NavLink>
+            </li>
+          </ul>
+
+          {!user ? (
+            <div className='d-flex gap-2'>
+              <NavLink to='/login' className='btn btn-outline-primary'>
+                Login
+              </NavLink>
+              <NavLink to='/signup' className='btn btn-primary'>
+                Sign Up
+              </NavLink>
+            </div>
+          ) : (
+            <div className='d-flex align-items-center gap-3'>
+              <span className='text-muted'>
+                Hello,{" "}
+                <strong>
+                  {user.firstName} {user.lastName}
+                </strong>
+              </span>
+              <ProfileDropdown />
+            </div>
+          )}
+        </div>
       </nav>
-      <div>
-        {user ? (
-          <>
-            <span>
-              Hello, {user.firstName} {user.lastName}
-            </span>
-            <ProfileDropdown />
-          </>
-        ) : null}
-      </div>
     </header>
   );
 }

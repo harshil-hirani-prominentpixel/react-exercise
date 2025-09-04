@@ -1,18 +1,25 @@
 export function validateEmailProminent(email: string): string | null {
   if (!email) return "Email is required";
-  if (!email.includes("@")) return "Email is invalid";
-  if (!email.toLowerCase().endsWith("@prominentpixel.com")) {
-    return "Email must end with @prominentpixel.com";
+
+  const regex = /^[A-Za-z0-9._%+-]+@prominentpixel\.com$/i;
+
+  if (!regex.test(email)) {
+    return "Email must be a valid @prominentpixel.com address";
   }
+
   return null;
 }
 
 export function validatePassword(password: string): string | null {
   if (!password) return "Password is required";
-  const regex = /^[A-Z][A-Za-z0-9]{7,15}$/;
+
+  const regex =
+    /^(?=.{8,16}$)(?=.*[A-Za-z])(?=.*\d)(?=.*@)[A-Z][A-Za-z\d@]{7,15}$/;
+
   if (!regex.test(password)) {
-    return "Password must start with a capital letter, contain letters & numbers, 8–16 chars";
+    return "Password must start with a capital letter, contain letters, numbers, an '@', and be 8–16 characters long";
   }
+
   return null;
 }
 

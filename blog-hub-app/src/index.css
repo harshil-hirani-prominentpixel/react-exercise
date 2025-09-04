@@ -140,3 +140,24 @@ body {
 .auth-link a:hover {
   text-decoration: underline;
 }
+
+/* index.css (add or keep these at the end) */
+body { background: #f8f9fa; }
+
+.container.content { padding: 1.25rem 0; }
+
+.err,
+.invalid-feedback { 
+  color: #dc3545 !important;       /* RED ONLY */
+  font-size: 0.875rem;
+}
+
+/* nice cards for auth */
+.auth-container { min-height: calc(100vh - 70px); display: grid; place-items: center; padding: 2rem 1rem; }
+.auth-card { width: 100%; max-width: 460px; border-radius: 14px; }
+
+/* navbar tweaks */
+.site-header .nav-link.active { color: #0d6efd !important; border-bottom: 2px solid #0d6efd; }
+
+
+

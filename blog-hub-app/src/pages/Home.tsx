@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import type { JSX } from "react";
+import "../styles/home.css";
 
-
-const Home = (): JSX.Element => {
+const Home = (): React.JSX.Element => {
   return (
     <section className='home-hero'>
       <div className='container hero-inner'>
