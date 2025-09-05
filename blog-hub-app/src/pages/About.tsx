@@ -1,6 +1,8 @@
+import '../styles/about.css';
+
 const About = (): React.JSX.Element => {
   return (
-    <div className='container content'>
+    <div className='about-card'>
       <h2>About MyBlog</h2>
       <p>
         <strong>MyBlog</strong> is a lightweight blogging platform built with{" "}
@@ -11,10 +13,10 @@ const About = (): React.JSX.Element => {
 
       <p>
         Unlike traditional blogging platforms, MyBlog stores everything directly
-        in your browser’s <code>localStorage</code>. This means you can
-        prototype and publish your blogs instantly without the need for complex
-        backend setups, hosting, or databases. Perfect for learners, hobby
-        writers, or anyone who just wants to start writing fast 🚀.
+        in your browser’s. This means you can prototype and publish your blogs
+        instantly without the need for complex backend setups, hosting, or
+        databases. Perfect for learners, hobby writers, or anyone who just wants
+        to start writing fast .
       </p>
 
       <p>

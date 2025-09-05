@@ -108,7 +108,7 @@ const AddBlog = (): React.JSX.Element => {
           <input className='form-control' value={authorName} readOnly />
         </div>
 
-        <button className='btn btn-primary mt-3' type='submit'>
+        <button className='btn btn-success mt-3' type='submit'>
           Publish
         </button>
       </form>

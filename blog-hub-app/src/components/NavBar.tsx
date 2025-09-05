@@ -1,10 +1,22 @@
 import { Link, NavLink } from "react-router-dom";
 import ProfileDropdown from "./ProfileDropDown";
 import { getCurrentUser } from "../utils/auth";
+import { useEffect, useState } from "react";
 import "../styles/navbar.css";
 
 const Navbar = (): React.JSX.Element => {
-  const user = getCurrentUser();
+  const [user, setUser] = useState(getCurrentUser());
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setUser(getCurrentUser());
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   return (
     <header className='site-header'>
@@ -54,8 +66,8 @@ const Navbar = (): React.JSX.Element => {
             </>
           ) : (
             <>
-              <div className='greeting'>
-                Welcome, <strong>{user.firstName}</strong>
+              <div className='greeting text-white'>
+                Hello, <strong>{user.firstName}</strong>
               </div>
               <ProfileDropdown />
             </>

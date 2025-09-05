@@ -184,7 +184,7 @@ export default function Signup(): React.JSX.Element {
 
           {errors.general && <p className='err mt-2'>{errors.general}</p>}
 
-          <button className='btn btn-primary w-100 mt-3' type='submit'>
+          <button className='btn btn-success w-100 mt-3' type='submit'>
             Sign Up
           </button>
 

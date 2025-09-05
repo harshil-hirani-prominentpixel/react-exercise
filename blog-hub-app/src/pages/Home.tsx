@@ -13,7 +13,7 @@ const Home = (): React.JSX.Element => {
           and stories with the world.
         </p>
 
-        <Link to='/add-blog' className='btn-primary'>
+        <Link to='/add-blog' className='btn btn-dark'>
           Create Your First Blog
         </Link>
 

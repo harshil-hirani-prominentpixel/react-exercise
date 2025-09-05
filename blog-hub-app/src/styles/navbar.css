@@ -1,43 +1,31 @@
-/* Header */
+/* Header - Full width navbar */
 .site-header {
-  background: #1f1f1f;
-  padding: 1rem 2rem;
+  width: 100%;
+  background: #000;
+  padding: 0.8rem 0;
   box-shadow: 0 3px 8px rgba(0,0,0,0.3);
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Brand */
+/* Brand / Logo */
 .brand-link {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #ffcc00;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: oklch(87.509% 0.23442 151.206) !important;
   text-decoration: none;
+  letter-spacing: 0.5px;
   transition: color 0.3s ease;
 }
 
 .brand-link:hover {
-  color: #fff;
+  color: #fff !important;
 }
 
 /* Nav links */
-.main-nav {
-  display: flex;
-  gap: 1.2rem;
-}
-
 .nav-link {
-  color: #f5f5f5;
-  text-decoration: none;
+  color: #f5f5f5 !important;
   font-size: 1rem;
   padding: 0.4rem 0.8rem;
   border-radius: 6px;
@@ -45,25 +33,20 @@
 }
 
 .nav-link:hover {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .nav-link.active {
-  background: #ffcc00;
-  color: #000;
+  background: oklch(87.509% 0.23442 151.206);
+  color: #000 !important;
   font-weight: 600;
 }
 
-/* Right side */
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
+/* Greeting text (Hello, User) */
 .greeting {
-  font-size: 0.95rem;
-  color: #ddd;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 600;
 }
 
 /* Profile dropdown */
@@ -87,7 +70,7 @@
   border-radius: 8px;
   padding: 0.6rem 0;
   min-width: 160px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   display: none;
 }
 
@@ -108,10 +91,20 @@
 }
 
 .profile-dropdown li a:hover {
-  background: #ffcc00;
+  background: oklch(87.509% 0.23442 151.206);
   color: #000;
 }
 
-/* styles/navbar.css */
-.site-header .navbar-toggler { border: none; }
-.site-header .navbar-toggler:focus { box-shadow: none; }
+/* Navbar toggler (hamburger button) */
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* White hamburger icon for dark background */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+}
