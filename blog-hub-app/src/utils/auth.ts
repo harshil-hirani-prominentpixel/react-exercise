@@ -4,6 +4,10 @@ import { readLocal, writeLocal } from "./storage";
 const USERS_KEY = "users";
 const CURRENT_KEY = "currentUser";
 
+function notifyAuthChange() {
+  document.dispatchEvent(new Event("authChange"));
+}
+
 export function registerUser(
   user: User
 ): { ok: true } | { ok: false; error: string } {
@@ -23,8 +27,9 @@ export function registerUser(
 
   users.push(user);
   writeLocal<User[]>(USERS_KEY, users);
-  writeLocal<User>(CURRENT_KEY, user); 
+  writeLocal<User>(CURRENT_KEY, user);
 
+  notifyAuthChange(); 
   return { ok: true };
 }
 
@@ -54,11 +59,14 @@ export function loginUser(
   }
 
   writeLocal<User>(CURRENT_KEY, user);
+
+  notifyAuthChange(); 
   return { ok: true, user };
 }
 
 export function logout(): void {
   localStorage.removeItem(CURRENT_KEY);
+  notifyAuthChange(); 
 }
 
 export function getCurrentUser(): User | null {

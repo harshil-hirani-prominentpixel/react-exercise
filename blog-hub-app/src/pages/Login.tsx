@@ -27,7 +27,7 @@ const Login = (): React.JSX.Element => {
       hasError = true;
     }
 
-    if (hasError) return; 
+    if (hasError) return;
 
     const res = loginUser(usernameOrEmail.trim(), password);
 
@@ -44,7 +44,9 @@ const Login = (): React.JSX.Element => {
       return;
     }
 
-    navigate("/dashboard");
+    document.dispatchEvent(new Event("authChange"));
+
+    navigate("/");
   };
 
   return (

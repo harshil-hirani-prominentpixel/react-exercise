@@ -1,20 +1,30 @@
 import { NavLink, Link } from "react-router-dom";
 import ProfileDropdown from "./ProfileDropDown";
 import { getCurrentUser } from "../utils/auth";
+import { useEffect, useState } from "react";
+import type { User } from "../types";
 import "../styles/navbar.css";
 
 export default function Header() {
-  const user = getCurrentUser();
+  const [user, setUser] = useState<User | null>(getCurrentUser());
+
+  useEffect(() => {
+    const updateUser = () => setUser(getCurrentUser());
+
+    document.addEventListener("authChange", updateUser);
+
+    return () => {
+      document.removeEventListener("authChange", updateUser);
+    };
+  }, []);
 
   return (
     <header className='site-header sticky-top'>
       <nav className='navbar navbar-expand-lg navbar-dark bg-black'>
-        {/* Brand / Logo */}
         <Link className='navbar-brand brand-link ms-3' to='/'>
           Blog Hub
         </Link>
 
-        {/* Mobile Toggler */}
         <button
           className='navbar-toggler custom-toggler'
           type='button'
@@ -27,7 +37,6 @@ export default function Header() {
           <span className='navbar-toggler-icon' />
         </button>
 
-        {/* Nav links */}
         <div className='collapse navbar-collapse' id='mainNav'>
           <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
             <li className='nav-item'>
@@ -63,7 +72,6 @@ export default function Header() {
             </li>
           </ul>
 
-          {/* Right side */}
           {!user ? (
             <div className='d-flex gap-2'>
               <NavLink to='/login' className='btn btn-outline-light'>

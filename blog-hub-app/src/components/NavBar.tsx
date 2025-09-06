@@ -2,19 +2,21 @@ import { Link, NavLink } from "react-router-dom";
 import ProfileDropdown from "./ProfileDropDown";
 import { getCurrentUser } from "../utils/auth";
 import { useEffect, useState } from "react";
+import type { User } from "../types";
 import "../styles/navbar.css";
 
 const Navbar = (): React.JSX.Element => {
-  const [user, setUser] = useState(getCurrentUser());
+  const [user, setUser] = useState<User | null>(getCurrentUser());
 
   useEffect(() => {
-    const handleStorageChange = () => {
+    const handleAuthChange = () => {
       setUser(getCurrentUser());
     };
 
-    window.addEventListener("storage", handleStorageChange);
+    document.addEventListener("authChange", handleAuthChange);
+
     return () => {
-      window.removeEventListener("storage", handleStorageChange);
+      document.removeEventListener("authChange", handleAuthChange);
     };
   }, []);
 

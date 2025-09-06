@@ -9,6 +9,8 @@ const ProfileDropdown = (): React.JSX.Element => {
 
   const handleLogout = (): void => {
     logout();
+
+    document.dispatchEvent(new Event("authChange"));
     navigate("/login");
   };
 
@@ -27,7 +29,7 @@ const ProfileDropdown = (): React.JSX.Element => {
         <div
           className='dropdown-menu show end-0 mt-2 shadow-sm'
           style={{ position: "absolute" }}
-          onMouseLeave={() => setOpen(false)} 
+          onMouseLeave={() => setOpen(false)}
         >
           <Link
             to='/add-blog'
