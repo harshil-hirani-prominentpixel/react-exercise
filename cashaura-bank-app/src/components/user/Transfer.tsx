@@ -41,7 +41,7 @@ const Transfer: React.FC = (): React.JSX.Element => {
         validationSchema={transferValidationSchema}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting }) => (
+        {() => (
           <Form className='space-y-3'>
             <div>
               <Field
@@ -73,7 +73,6 @@ const Transfer: React.FC = (): React.JSX.Element => {
 
             <button
               type='submit'
-              disabled={isSubmitting}
               className='w-full py-2 rounded bg-green-600 text-white disabled:opacity-50'
             >
               Send

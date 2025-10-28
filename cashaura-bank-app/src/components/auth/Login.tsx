@@ -73,7 +73,6 @@ const Login: React.FC = () => {
 
             <button
               type='submit'
-              disabled={isSubmitting}
               className='w-full py-2 rounded bg-green-600 text-white disabled:opacity-50'
             >
               Login
